@@ -1,0 +1,10 @@
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Debug\BeamUtilisation.csprojAssemblyReference.cache
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Debug\BeamUtilisation.Form1.resources
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Debug\BeamUtilisation.Properties.Resources.resources
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Debug\BeamUtilisation.csproj.GenerateResource.cache
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Debug\BeamUtilisation.csproj.CoreCompileInputs.cache
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\bin\Debug\BeamUtilisation.exe.config
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\bin\Debug\BeamUtilisation.exe
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\bin\Debug\BeamUtilisation.pdb
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Debug\BeamUtilisation.exe
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Debug\BeamUtilisation.pdb

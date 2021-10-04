@@ -1,0 +1,9 @@
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\bin\Release\BeamUtilisation.exe.config
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\bin\Release\BeamUtilisation.exe
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\bin\Release\BeamUtilisation.pdb
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Release\BeamUtilisation.Form1.resources
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Release\BeamUtilisation.Properties.Resources.resources
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Release\BeamUtilisation.csproj.GenerateResource.cache
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Release\BeamUtilisation.csproj.CoreCompileInputs.cache
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Release\BeamUtilisation.exe
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Release\BeamUtilisation.pdb
