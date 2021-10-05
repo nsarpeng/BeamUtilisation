@@ -145,7 +145,7 @@ namespace BeamUtilisation
 
         public double ChiLT(double phiLT, double beta, double lambdaLT)
         {
-            return Math.Min(Math.Min(1,1/Math.Pow(lambdaLT,2)), 1 / (phiLT + Math.Pow(phiLT, 2) - beta * Math.Pow(phiLT, 2)));
+            return Math.Min(Math.Min(1,1/Math.Pow(lambdaLT,2)), 1 / (phiLT + Math.Pow( Math.Pow(phiLT, 2) - beta * Math.Pow(phiLT, 2),0.5)));
         }
 
         public double Reducedfy(double fy, double rho)
