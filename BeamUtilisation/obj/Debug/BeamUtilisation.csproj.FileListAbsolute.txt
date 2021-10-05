@@ -8,3 +8,4 @@ C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\bin\Debug
 C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\bin\Debug\BeamUtilisation.pdb
 C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Debug\BeamUtilisation.exe
 C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Debug\BeamUtilisation.pdb
+C:\Users\nick.simpson\Documents\GitHub\BeamUtilisation\BeamUtilisation\obj\Debug\BeamUtilisation.FormDetailedOutput.resources

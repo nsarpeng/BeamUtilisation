@@ -8,12 +8,13 @@ namespace BeamUtilisation
 {
     class EC3calcs
     {
-
-        public int SectionClassOutstandFlangeCompression(double c, double t, double fy)
+        public double Epsilon(double fy)
+        {
+            return Math.Pow(235 / fy, 0.5);
+        }
+        public int SectionClassOutstandFlangeCompression(double c, double t, double epsilon)
         {
             // assume compression only
-            double epsilon = Math.Pow(235 / fy, 0.5);
-
             if (c/t <= 9 * epsilon)
             {
                 return 1;
@@ -33,11 +34,10 @@ namespace BeamUtilisation
 
         }
 
-        public int SectionClassWebBending(double c, double t, double fy)
+        
+        public int SectionClassWebBending(double c, double t, double epsilon)
         {
             // assume bending only
-            double epsilon = Math.Pow(235 / fy, 0.5);
-
             if (c / t <= 72 * epsilon)
             {
                 return 1;
@@ -148,6 +148,11 @@ namespace BeamUtilisation
             return Math.Min(Math.Min(1,1/Math.Pow(lambdaLT,2)), 1 / (phiLT + Math.Pow(phiLT, 2) - beta * Math.Pow(phiLT, 2)));
         }
 
+        public double Reducedfy(double fy, double rho)
+        {
+            return (1 - rho) * fy;
+        }
+
         public double Mcr(double C1, double C2, double E, double G, double Iy, double Iz, double Iw, double It, double k, double kw, double L, double zg)
         {
             double g = 1; // Math.Pow(1 - (Iz / Iy), 0.5);
@@ -210,6 +215,159 @@ namespace BeamUtilisation
         {
             return 0.5 * (1 + alphaLT * (lambdaLT - lambdaLT0) + beta * Math.Pow(lambdaLT, 2));
         }
+
+        public double VplRd(double Av, double fy, double gammaM0)
+        {
+            // EN1993-1-1 Eq.6.18
+            return Av * (fy / Math.Pow(3, 0.5)) / gammaM0;
+        }
+
+        public double AvIHparallel(double A, double h, double b, double tf, double tw, double r)
+        {
+            // EN1993-1-1 Cl.6.2.6(3)
+            double nu = 1; // conservative
+            double hw = h-2*tf;
+            return Math.Max(A-2*b*tf+(tw+2*r)*tf,nu*hw*tw);
+        }
+
+        public Boolean ShearInteraction(double VEd, double VplRd)
+        {
+            // EC3 6.2.8(2)
+            if (Math.Abs(VEd) > 0.5 * VplRd)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Boolean Shearbuckling(double epsilon, double nu, double hw, double tw)
+        {
+            if (hw/tw > 72 * epsilon / nu)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public double Rho(double VEd, double VplRd)
+        {
+            //EN1993-1-1 Eq.6.29
+            return Math.Pow(2 * Math.Abs(VEd) / VplRd - 1, 2);
+        }
+
+        public double kcUKNA(double C1)
+        {
+            return 1 / Math.Pow(C1, 0.5);
+        }
+
+        public double ChiLTmod(double chiLT, double f, double lambdaLT)
+        {
+            return Math.Min(Math.Min(1, 1 / Math.Pow(lambdaLT, 2)), chiLT / f);
+        }
+
+        public double F(double kc, double lambdaLT)
+        {
+            //EC3 cl.6.3.2.3(2)
+            return Math.Min(1, 1 - 0.5 * (1 - kc) * (1 - 2 * Math.Pow(lambdaLT - 0.8, 2)));
+        }
+
+        public double PhiLT6322(double alphaLT, double lambdaLT)
+        {
+            return 0.5 * (1 + alphaLT * (lambdaLT - 0.2) +  Math.Pow(lambdaLT, 2));
+        }
+
+        public double ChiLT6322(double phiLT, double lambdaLT)
+        {
+            return Math.Min(1, 1 / (phiLT + Math.Pow(Math.Pow(phiLT, 2) - Math.Pow(lambdaLT, 2), 0.5)));
+        }
+
+        public double AlphaLT6322(string curve)
+        {
+            if (curve == "a")
+            {
+                return 0.21;
+            }
+            else if (curve == "b")
+            {
+                return 0.34;
+            }
+            else if (curve == "c")
+            {
+                return 0.49;
+            }
+            else if (curve == "d")
+            {
+                return 0.76;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
+        public string BucklingCurveTable6pt4RolledI(double h, double b)
+        {
+            if (h / b <= 2)
+            {
+                return "a";
+            }
+            else
+            {
+                return "b";
+            }
+        }
+
+        public string BucklingCurveTable6pt4WeldedI(double h, double b)
+        {
+            if (h / b <= 2)
+            {
+                return "c";
+            }
+            else
+            {
+                return "d";
+            }
+        }
+        public string BucklingCurveTable6pt4Other()
+        {
+            return "d";
+        }
+
+        public double McRd(int secclass, double Wpl, double Wel, double fy, double gammaM0, out double W)
+        {
+            if (secclass == 1 || secclass == 2)
+            {
+                W = Wpl;
+               
+            }
+            else if (secclass == 3)
+            {
+                W= Wel;
+            }
+            else
+            {
+                W = 1;
+            }
+            return W * fy / gammaM0;
+        }
+
+        public double MbRd(double chiLT, double W, double fy, double gammaM1)
+        {
+            return chiLT * W  * fy / gammaM1;
+        }
+
+        public double G(double E, double v)
+        {
+            //EC2 3.2.6(1)
+            return E / (2 * (1 + v));
+        }
+
 
         public void UBs(out string[] ubname, out double[] h, out double[] b, out double[] tw, out double[] tf, out double[] r, out double[] Iyy, out double[] Izz, out double[] Wyel, out double[] Wzel, out double[] Wypl, out double[] Wzpl, out double[] U, out double[] X, out double[] Iw, out double[] It, out double[] A)
         {
